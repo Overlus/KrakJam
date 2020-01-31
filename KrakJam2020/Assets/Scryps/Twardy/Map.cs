@@ -55,15 +55,12 @@ public class Map : MonoBehaviour
         {
             case 1:
                 optymalizationVariable = new Vector3(0, 90, 0);
-                Debug.Log(1);
                 break;
             case 2:
                 optymalizationVariable = new Vector3(0, 180, 0);
-                Debug.Log(2);
                 break;
             default:
                 optymalizationVariable = new Vector3(0, 270, 0);
-                Debug.Log(0);
                 break;
         }
 

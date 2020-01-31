@@ -157,8 +157,8 @@ Camera:
   m_GameObject: {fileID: 621197660}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.6792453, g: 0.5525986, b: 0.11854753, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -247,7 +247,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.5
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -303,13 +303,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1728233902}
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalRotation: {x: 0.5735764, y: 0, z: 0, w: 0.8191521}
+  m_LocalPosition: {x: 0, y: 5, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: 70, y: 0, z: 0}
 --- !u!1001 &4284487907570159210
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -377,6 +377,24 @@ PrefabInstance:
       propertyPath: size
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 4284487907570159212, guid: 8433878d6f5788c45bd4605e8a606cb0,
+        type: 3}
+      propertyPath: roomTypes.Array.data[0]
+      value: 
+      objectReference: {fileID: 4118665633826017438, guid: 1f2107c55f2d46b4892ad15a626bd2b3,
+        type: 3}
+    - target: {fileID: 4284487907570159212, guid: 8433878d6f5788c45bd4605e8a606cb0,
+        type: 3}
+      propertyPath: roomTypes.Array.data[1]
+      value: 
+      objectReference: {fileID: 132785322527756747, guid: c807e9878342a224f86826d0107c582d,
+        type: 3}
+    - target: {fileID: 4284487907570159212, guid: 8433878d6f5788c45bd4605e8a606cb0,
+        type: 3}
+      propertyPath: roomTypes.Array.data[2]
+      value: 
+      objectReference: {fileID: 274914304781861651, guid: 089f0c4648fd78f438d58a865a987bbd,
+        type: 3}
     - target: {fileID: 5165597650007800632, guid: 8433878d6f5788c45bd4605e8a606cb0,
         type: 3}
       propertyPath: m_Name
