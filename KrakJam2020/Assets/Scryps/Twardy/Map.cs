@@ -14,8 +14,11 @@ public class Map : MonoBehaviour
 
     private void Start()
     {
-        if (size > 10 || size == 0)
-            size = 10;
+        if (size % 2 == 0)
+            size++;     // Labirynt - wielskość zawsze nieparzysta
+
+        if (size > 11 || size < 5)  // Labirynt - wielkość 
+            size = 11;
 
         Vector3 tempVector;
 
@@ -28,10 +31,10 @@ public class Map : MonoBehaviour
 
                 gridOfRooms[i, j] = Instantiate(roomTypes[Random.Range((int)0, 3)]);
 
-                if(size % 2 == 0)
-                    tempVector = new Vector3(i + 0.5f - (size / 2), 0, j + 0.5f - (size / 2));
-                else
-                    tempVector = new Vector3(i - (size / 2), 0, j - (size / 2));
+                //if(size % 2 == 0)
+                //    tempVector = new Vector3(i + 0.5f - (size / 2), 0, j + 0.5f - (size / 2));
+                //else
+                tempVector = new Vector3(i - (size / 2), 0, j - (size / 2));
 
                 gridOfRooms[i, j].transform.parent = gameObject.transform;
 
@@ -46,6 +49,8 @@ public class Map : MonoBehaviour
 
 
     }
+
+
 
 
 
