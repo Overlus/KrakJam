@@ -62,7 +62,12 @@ public class Map : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.M))
         {
             //Debug.Log("XD");
-           MoveRow(additionalRoom, 0); //podać obiekt który będzie podmieniany.
+           MoveRow(additionalRoom, Random.Range(0, (int) size - 1)); //podać obiekt który będzie podmieniany.
+        }
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            //Debug.Log("XD");
+            MoveColumns(additionalRoom, Random.Range(0, (int)size - 1)); //podać obiekt który będzie podmieniany.
         }
     }
 
@@ -90,8 +95,22 @@ public class Map : MonoBehaviour
 
     private void MoveColumns(GameObject extraRoom, int columnNumber )
     {
-      
-     
+
+        GameObject buffer = gridOfRooms[columnNumber, 0]; 
+
+        for (int i = 0; i < size - 1; i++) 
+        {
+            gridOfRooms[columnNumber, i] = gridOfRooms[columnNumber, i + 1]; 
+
+            optymalizationVariable = new Vector3(i - (size / 2), 0, columnNumber - (size / 2)); 
+            gridOfRooms[columnNumber, i].transform.position = optymalizationVariable;      
+        }
+        gridOfRooms[columnNumber, size - 1] = extraRoom;  
+        optymalizationVariable = new Vector3((size - 1) - (size / 2), 0, columnNumber - (size / 2)); 
+        gridOfRooms[columnNumber, size - 1].transform.position = optymalizationVariable; 
+
+        additionalRoom = buffer;
+
     }
 
     private void MoveRow(GameObject extraRoom, int rowNumber)
@@ -99,11 +118,9 @@ public class Map : MonoBehaviour
 
         GameObject buffer = gridOfRooms[0, rowNumber];  // zapisz tymczasowo pokój maxymalnie po lewej
 
-        for (int i = 0; i < size-2; i++)    // indexy od 0 do (size - 2)
+        for (int i = 0; i < size - 1; i++)    // indexy od 0 do (size - 1)
         {
-            gridOfRooms[i, rowNumber] = gridOfRooms[i + 1, rowNumber]; // przesuń wszystkie pokoje oprócz ostatniego o 1 w lewo (pokój 0,0 wypada do buffera wyżej) (bierzemy pokój z prawej i wsadzamy go w index po lewej)    tu brakuje 1 linijki
-            // ^^^^ tu gdzieś jest błąd
-            Debug.Log(gridOfRooms[i, rowNumber].name);
+            gridOfRooms[i, rowNumber] = gridOfRooms[i + 1, rowNumber]; // przesuń wszystkie pokoje oprócz ostatniego o 1 w lewo (pokój 0,0 wypada do buffera wyżej) (bierzemy pokój z prawej i wsadzamy go w index po lewej)   
 
             optymalizationVariable = new Vector3(i - (size / 2), 0, rowNumber - (size / 2));    // weź rząd oraz kolumnę i policz dla nich pozycję
             gridOfRooms[i, rowNumber].transform.position = optymalizationVariable;      // przypisz policzoną pozycję
