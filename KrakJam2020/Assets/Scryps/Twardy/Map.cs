@@ -62,12 +62,12 @@ public class Map : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.M))
         {
             //Debug.Log("XD");
-           MoveRow(additionalRoom, Random.Range(0, (int) size - 1)); //podać obiekt który będzie podmieniany.
+           MoveRow(additionalRoom, Random.Range(0, (int) size )); //podać obiekt który będzie podmieniany.
         }
         if (Input.GetKeyDown(KeyCode.N))
         {
             //Debug.Log("XD");
-            MoveColumns(additionalRoom, Random.Range(0, (int)size - 1)); //podać obiekt który będzie podmieniany.
+            MoveColumns(additionalRoom, Random.Range(0, (int)size)); //podać obiekt który będzie podmieniany.
         }
     }
 
@@ -102,11 +102,11 @@ public class Map : MonoBehaviour
         {
             gridOfRooms[columnNumber, i] = gridOfRooms[columnNumber, i + 1]; 
 
-            optymalizationVariable = new Vector3(i - (size / 2), 0, columnNumber - (size / 2)); 
+            optymalizationVariable = new Vector3(columnNumber  - (size / 2), 0, i - (size / 2)); 
             gridOfRooms[columnNumber, i].transform.position = optymalizationVariable;      
         }
         gridOfRooms[columnNumber, size - 1] = extraRoom;  
-        optymalizationVariable = new Vector3((size - 1) - (size / 2), 0, columnNumber - (size / 2)); 
+        optymalizationVariable = new Vector3(columnNumber - (size / 2), 0,  (size - 1) - (size / 2)); 
         gridOfRooms[columnNumber, size - 1].transform.position = optymalizationVariable; 
 
         additionalRoom = buffer;
