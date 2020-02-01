@@ -12,10 +12,6 @@ public class OurGameManager : MonoBehaviour
     {
         StartCoroutine(StateMachine());
     }
-
-
-   
-
     private  IEnumerator StateMachine()
     {
         Debug.Log(actualState);
