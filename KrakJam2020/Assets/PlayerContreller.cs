@@ -11,10 +11,12 @@ public class PlayerContreller : MonoBehaviour
 {
     private Vector3 newPlayerPosition;
     private bool isLerping;
+    private Vector3 childrenPosition;
     private void Update()
     {
         PlayerInput();
         DrawLines();
+        childrenPosition = transform.GetChild(0).position;
     }
 
     private void PlayerInput()
@@ -44,7 +46,7 @@ public class PlayerContreller : MonoBehaviour
     private void CheckIsPatchAvailable(Vector3 direction)
     {
         RaycastHit hit;
-        if (!Physics.Raycast(transform.position, direction, out hit, 1)&&!isLerping)
+        if (!Physics.Raycast(childrenPosition, direction, out hit, 1)&&!isLerping)
         {
             newPlayerPosition = transform.position + direction;
                 StartCoroutine(MovePlayer(0.35f));
@@ -54,7 +56,7 @@ public class PlayerContreller : MonoBehaviour
     }
     private void DrawLines()
     {
-        var position = transform.position;
+        var position = childrenPosition;
         var right = transform.right;
         Debug.DrawRay(position,right,Color.red,1f);
         Debug.DrawRay(position,-right ,Color.red,1f);
