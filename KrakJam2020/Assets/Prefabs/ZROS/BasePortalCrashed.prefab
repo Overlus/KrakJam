@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 2409125303907495429}
   m_Layer: 0
   m_Name: BasePortalCrashed
-  m_TagString: Untagged
+  m_TagString: Portal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -225,8 +225,6 @@ MonoBehaviour:
   - {fileID: 312582897115436150}
   - {fileID: 5610103034433866555}
   - {fileID: 3727837334790925961}
-  portalPart: {fileID: 1585830614689211101, guid: 8e59faa845542d04a8dba33ab026c1f7,
-    type: 3}
 --- !u!54 &2409125303907495429
 Rigidbody:
   m_ObjectHideFlags: 0

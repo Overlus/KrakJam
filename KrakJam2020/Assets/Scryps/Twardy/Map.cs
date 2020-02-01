@@ -4,18 +4,31 @@ using UnityEngine;
 
 public class Map : MonoBehaviour
 {
-    public uint size;
+    [SerializeField] uint _size_;
+
+    static public uint size;
 
     [SerializeField] GameObject[] roomTypes = new GameObject[3];
 
     Vector3 optymalizationVariable;
 
-    public GameObject[,] gridOfRooms;
+    static public GameObject[,] gridOfRooms;
 
     GameObject additionalRoom;
 
+    [SerializeField] GameObject portal;
+
+    public GameObject repItem;
+
+    static public GameObject repparingItem;
+
+
     private void Start()
     {
+        size = _size_;
+
+        repparingItem = repItem;
+
         if (size % 2 == 0)
             size++;     // Labirynt - wielskość zawsze nieparzysta
 
@@ -54,6 +67,10 @@ public class Map : MonoBehaviour
         }
 
 
+        SpawnItemToReppairPortal(size, repparingItem, gridOfRooms);
+
+        SpawnPortal();
+
     }
 
 
@@ -63,11 +80,13 @@ public class Map : MonoBehaviour
         {
             //Debug.Log("XD");
            MoveRow(additionalRoom, Random.Range(0, (int) size )); //podać obiekt który będzie podmieniany.
+           MoveRow(additionalRoom, Random.Range(0, (int)size));
         }
         if (Input.GetKeyDown(KeyCode.N))
         {
             //Debug.Log("XD");
             MoveColumns(additionalRoom, Random.Range(0, (int)size)); //podać obiekt który będzie podmieniany.
+            MoveColumns(additionalRoom, Random.Range(0, (int)size));
         }
     }
 
@@ -133,5 +152,26 @@ public class Map : MonoBehaviour
     }
     
 
+    static public void SpawnItemToReppairPortal( uint _size, GameObject _repparingItem, GameObject[,] _gridOfRooms)
+    {
+        int i = Random.Range(0, (int)_size);
+        int j = Random.Range(0, (int)_size);
+
+        var item = Instantiate(_repparingItem);
+        item.transform.position = _gridOfRooms[i, j].transform.position + new Vector3(0, 0.535f, 0);
+        item.transform.parent = _gridOfRooms[i, j].transform;
+    }
+
+
+    void SpawnPortal()
+    {
+        int i = Random.Range(0, (int)size);
+        int j = Random.Range(0, (int)size);
+
+        var port = Instantiate(portal);
+        port.transform.position = gridOfRooms[i, j].transform.position;
+        port.transform.parent = gridOfRooms[i, j].transform;
+
+    }
 
 }
