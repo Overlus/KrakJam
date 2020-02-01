@@ -61,11 +61,7 @@ public class PlayerContreller : MonoBehaviour
             newPlayerPosition = transform.position + direction;
             StartCoroutine(MovePlayer(0.35f));
         }
-        else
-        {
-            OurGameManager.actualState = OurGameController.GameState.sceneMove;
-            OurGameController.enemyMadeMove = true;
-        }
+       
 
     }
     private void DrawLines()
