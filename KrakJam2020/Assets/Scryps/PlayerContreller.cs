@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using UnityEditor;
 using UnityEditor.VersionControl;
 using UnityEngine;
+using UnityEngine.Events;
 using Debug = UnityEngine.Debug;
 
 public class PlayerContreller : MonoBehaviour
@@ -23,44 +24,48 @@ public class PlayerContreller : MonoBehaviour
 
     private void PlayerInput()
     {
-        if (!Input.anyKeyDown)
-            return;
-        if (Input.GetKeyDown(KeyCode.W))
+        if (OurGameManager.actualState == OurGameController.GameState.playerMove)
         {
-            CheckIsPatchAvailable(Vector3.forward);
-        }
+            if (!Input.anyKeyDown && OurGameController.playerMadeMove)
+                return;
+            if (Input.GetKeyDown(KeyCode.W))
+            {
+                CheckIsPatchAvailable(Vector3.forward);
+            }
 
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            CheckIsPatchAvailable(-Vector3.forward);
-        }
+            if (Input.GetKeyDown(KeyCode.S))
+            {
+                CheckIsPatchAvailable(-Vector3.forward);
+            }
 
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            CheckIsPatchAvailable(-Vector3.right);
-        }
+            if (Input.GetKeyDown(KeyCode.A))
+            {
+                CheckIsPatchAvailable(-Vector3.right);
+            }
 
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            CheckIsPatchAvailable(Vector3.right);
+            if (Input.GetKeyDown(KeyCode.D))
+            {
+                CheckIsPatchAvailable(Vector3.right);
+            }
         }
     }
     private void CheckIsPatchAvailable(Vector3 direction)
     {
+        
         childrenPosition.y =- 0.20f;
-
         RaycastHit[] hits;
         hits = Physics.RaycastAll(childrenPosition, direction,1);
         if (hits.Length >= 5 && !isLerping)
         {
             newPlayerPosition = transform.position + direction;
-
             StartCoroutine(MovePlayer(0.35f));
         }
+
     }
     private void DrawLines()
     {
         var position = childrenPosition;
+        position.y =- 0.20f;
         var right = transform.right;
         Debug.DrawRay(position,right,Color.red,1f);
         Debug.DrawRay(position,-right ,Color.red,1f);
@@ -86,5 +91,7 @@ public class PlayerContreller : MonoBehaviour
         newPlayerPosition.z = (float)Math.Round(newPlayerPosition.z,1);
         transform.position = newPlayerPosition;
         isLerping = false;
+        OurGameController.playerMadeMove = true;
     }
+
 }
