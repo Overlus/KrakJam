@@ -20,6 +20,8 @@ public class Map : MonoBehaviour
 
     public GameObject repItem;
 
+    public CameraShake cameraShake;
+
     static public GameObject repparingItem;
 
 
@@ -71,16 +73,18 @@ public class Map : MonoBehaviour
     private void Update()
     {
         MoveScene();
-//        if (Input.GetKeyDown(KeyCode.M))
-//        {
-//           MoveRow(additionalRoom, Random.Range(0, (int) size )); //podać obiekt który będzie podmieniany.
-//           MoveRow(additionalRoom, Random.Range(0, (int)size));
-//        }
-//        if (Input.GetKeyDown(KeyCode.N))
-//        {
-//            MoveColumns(additionalRoom, Random.Range(0, (int)size)); //podać obiekt który będzie podmieniany.
-//            MoveColumns(additionalRoom, Random.Range(0, (int)size));
-//        }
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+           MoveRow(additionalRoom, Random.Range(0, (int) size )); //podać obiekt który będzie podmieniany.
+           MoveRow(additionalRoom, Random.Range(0, (int)size));
+           StartShake();
+        }
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            MoveColumns(additionalRoom, Random.Range(0, (int)size)); //podać obiekt który będzie podmieniany.
+            MoveColumns(additionalRoom, Random.Range(0, (int)size));
+            StartShake();
+        }
     }
 
     private void MoveScene()
@@ -91,6 +95,7 @@ public class Map : MonoBehaviour
             MoveColumns(additionalRoom, Random.Range(0, (int)size)); //podać obiekt który będzie podmieniany.
             OurGameController.sceneMadeMove = true;
             OurGameManager.actualState = OurGameController.GameState.playerMove;
+            
         }
     }
     void ApplayRoomRotation(Transform transformToRotate)
@@ -168,6 +173,11 @@ public class Map : MonoBehaviour
         port.transform.position = gridOfRooms[i, j].transform.position;
         port.transform.parent = gridOfRooms[i, j].transform;
 
+    }
+    
+    public void StartShake()
+    {
+        StartCoroutine(cameraShake.Shake(0.15f, 0.1f));
     }
 
 }

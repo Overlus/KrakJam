@@ -18,6 +18,7 @@ public class OurGameManager : MonoBehaviour
 
     private  IEnumerator StateMachine()
     {
+        Debug.Log(actualState);
         bool noGameEnd = true;
         while (noGameEnd)
         {
