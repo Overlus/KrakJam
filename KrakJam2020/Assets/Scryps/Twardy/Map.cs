@@ -35,7 +35,7 @@ public class Map : MonoBehaviour
             for(int j = 0; j < size; j++)
             {
 
-                gridOfRooms[i, j] = Instantiate(roomTypes[Random.Range((int)0, 3)]);
+                gridOfRooms[i, j] = Instantiate(roomTypes[Random.Range(0, 3)]);
 
                 //if(size % 2 == 0)
                 //    tempVector = new Vector3(i + 0.5f - (size / 2), 0, j + 0.5f - (size / 2));
@@ -59,8 +59,11 @@ public class Map : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButtonDown("Jump"))
-            ModyfyTheMaze();
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            Debug.Log("XD");
+           MoveRow(gridOfRooms[0,0],1); //podać obiekt który będzie podmieniany.
+        }
     }
 
 
@@ -85,72 +88,91 @@ public class Map : MonoBehaviour
 
     }
 
-
-    public void ModyfyTheMaze()
+    private void MoveColumns(GameObject extraRoom, int columnNumber )
     {
-        int value = Random.Range((int)-(size - 1), (int)size - 1); // 0 - 6 Tested
-        bool isLine = (Random.Range(0, 2) % 2 == 1);
-
-        int absValue = Mathf.Abs(value);
-        GameObject buffer;
-
-        Debug.Log(isLine);
-
-
-        if (isLine)
-        {
-
-            if (value >= 0)
-            {
-
-                buffer = additionalRoom;
-                additionalRoom = gridOfRooms[absValue, size - 1];
-
-                for (int i = (int)size - 2; i >= 0; i--)
-                {
-                        Debug.Log(i);
-
-                    if (i != 0)
-                    {
-                        Debug.Log(size - 1);
-                        gridOfRooms[absValue, size - 1] = gridOfRooms[absValue, size - 2];
-                    }
-                    else
-                    {
-                        Debug.Log(i);
-
-                        gridOfRooms[absValue, 0] = buffer;
-                    }
-
-                }
-
-            }
-            else
-            {
-
-                //buffer = gridOfRooms[absValue, size - 1];
-                //additionalRoom = gridOfRooms[absValue, 0];
-
-                //for (int i = (int)size - 2; i > 1; i--)
-                //{
-
-
-                //}
-
-            }
-
-
-        }
-        else
-        {
-
-
-
-        }
-
-
-        additionalRoom.transform.position = Camera.main.transform.position + new Vector3(0, 10, 0);
+      
+     
     }
+
+    private void MoveRow(GameObject extraRoom, int rowNumber)
+    {
+        GameObject newExtraRoom;
+        newExtraRoom = gridOfRooms[0, rowNumber];
+        Debug.Log(newExtraRoom.name);
+        for (int i = 0; i < gridOfRooms.GetLength(0)-2; i++)
+        {
+            gridOfRooms[i, rowNumber] = gridOfRooms[i + 1, rowNumber];
+        }
+        gridOfRooms[gridOfRooms.GetLength(0) - 1, rowNumber] = extraRoom;
+    }
+    
+//    }
+//
+//    public void ModyfyTheMaze()
+//    bool isLine = (Random.Range(0, 2) % 2 == 1);
+//   
+//           int absValue = Mathf.Abs(value);
+//           GameObject buffer;
+//   
+//           Debug.Log(isLine);
+//   
+//   
+//           if (isLine)
+//           {
+//   
+//               if (value >= 0)
+//               {
+//   
+//                   buffer = additionalRoom;
+//                   additionalRoom = gridOfRooms[absValue, size - 1];
+//   
+//                   for (int i = (int)size - 2; i >= 0; i--)
+//                   {
+//                           Debug.Log(i);
+//   
+//                       if (i != 0)
+//                       {
+//                           Debug.Log(size - 1);
+//                           gridOfRooms[absValue, size - 1] = gridOfRooms[absValue, size - 2];
+//                       }
+//                       else
+//                       {
+//                           Debug.Log(i);
+//   
+//                           gridOfRooms[absValue, 0] = buffer;
+//                       }
+//   
+//                   }
+//   
+//               }
+//               else
+//               {
+//   
+//                   //buffer = gridOfRooms[absValue, size - 1];
+//                   //additionalRoom = gridOfRooms[absValue, 0];
+//   
+//                   //for (int i = (int)size - 2; i > 1; i--)
+//                   //{
+//   
+//   
+//                   //}
+//   
+//               }
+//   
+//   
+//           }
+//           else
+//           {
+//   
+//   
+//   
+//           }
+//   
+//   
+//           additionalRoom.transform.position = Camera.main.transform.position + new Vector3(0, 10, 0);
+//       } {
+//        int value = Random.Range((int)-(size - 1), (int)size - 1); // 0 - 6 Tested
+//       
 
 
 }
