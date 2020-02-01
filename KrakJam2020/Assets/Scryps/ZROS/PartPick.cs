@@ -13,6 +13,9 @@ public class PartPick : MonoBehaviour
             gameObject.transform.localPosition = new Vector3(0, 1.3f, 0);
         }else if (other.CompareTag("Portal"))
         {
+
+            Map.SpawnItemToReppairPortal(Map.size, Map.repparingItem, Map.gridOfRooms);
+
             Destroy(gameObject);
         }
     }
