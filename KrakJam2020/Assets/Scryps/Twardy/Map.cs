@@ -47,7 +47,6 @@ public class Map : MonoBehaviour
         {
             for(int j = 0; j < size; j++)
             {
-
                 gridOfRooms[i, j] = Instantiate(roomTypes[Random.Range(0, 3)]);
 
                 //if(size % 2 == 0)
@@ -63,36 +62,37 @@ public class Map : MonoBehaviour
 
                 gridOfRooms[i, j].transform.position = tempVector;
             }
-
         }
-
-
         SpawnItemToReppairPortal(size, repparingItem, gridOfRooms);
 
         SpawnPortal();
-
     }
-
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            //Debug.Log("XD");
-           MoveRow(additionalRoom, Random.Range(0, (int) size )); //podać obiekt który będzie podmieniany.
-           MoveRow(additionalRoom, Random.Range(0, (int)size));
-        }
-        if (Input.GetKeyDown(KeyCode.N))
-        {
-            //Debug.Log("XD");
-            MoveColumns(additionalRoom, Random.Range(0, (int)size)); //podać obiekt który będzie podmieniany.
-            MoveColumns(additionalRoom, Random.Range(0, (int)size));
-        }
+        MoveScene();
+//        if (Input.GetKeyDown(KeyCode.M))
+//        {
+//           MoveRow(additionalRoom, Random.Range(0, (int) size )); //podać obiekt który będzie podmieniany.
+//           MoveRow(additionalRoom, Random.Range(0, (int)size));
+//        }
+//        if (Input.GetKeyDown(KeyCode.N))
+//        {
+//            MoveColumns(additionalRoom, Random.Range(0, (int)size)); //podać obiekt który będzie podmieniany.
+//            MoveColumns(additionalRoom, Random.Range(0, (int)size));
+//        }
     }
 
-
-
-
+    private void MoveScene()
+    {
+        if (OurGameManager.actualState == OurGameController.GameState.sceneMove)
+        {
+            MoveRow(additionalRoom, Random.Range(0, (int) size )); //podać obiekt który będzie podmieniany.
+            MoveColumns(additionalRoom, Random.Range(0, (int)size)); //podać obiekt który będzie podmieniany.
+            OurGameController.sceneMadeMove = true;
+            OurGameManager.actualState = OurGameController.GameState.playerMove;
+        }
+    }
     void ApplayRoomRotation(Transform transformToRotate)
     {
         switch(Random.Range(0, 3))
@@ -109,7 +109,6 @@ public class Map : MonoBehaviour
         }
 
         transformToRotate.Rotate(optymalizationVariable);
-
     }
 
     private void MoveColumns(GameObject extraRoom, int columnNumber )
@@ -127,14 +126,11 @@ public class Map : MonoBehaviour
         gridOfRooms[columnNumber, size - 1] = extraRoom;  
         optymalizationVariable = new Vector3(columnNumber - (size / 2), 0,  (size - 1) - (size / 2)); 
         gridOfRooms[columnNumber, size - 1].transform.position = optymalizationVariable; 
-
         additionalRoom = buffer;
-
     }
 
     private void MoveRow(GameObject extraRoom, int rowNumber)
     {
-
         GameObject buffer = gridOfRooms[0, rowNumber];  // zapisz tymczasowo pokój maxymalnie po lewej
 
         for (int i = 0; i < size - 1; i++)    // indexy od 0 do (size - 1)
