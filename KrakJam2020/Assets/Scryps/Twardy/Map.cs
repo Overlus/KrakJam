@@ -12,6 +12,8 @@ public class Map : MonoBehaviour
 
     public GameObject[,] gridOfRooms;
 
+    GameObject additionalRoom;
+
     private void Start()
     {
         if (size % 2 == 0)
@@ -21,6 +23,10 @@ public class Map : MonoBehaviour
             size = 11;
 
         Vector3 tempVector;
+
+
+        additionalRoom = Instantiate(roomTypes[Random.Range((int)0, 3)]);
+        additionalRoom.transform.position = Camera.main.transform.position + new Vector3(0, 10, 0); 
 
         gridOfRooms = new GameObject[size, size];
 
@@ -51,6 +57,12 @@ public class Map : MonoBehaviour
     }
 
 
+    private void Update()
+    {
+        if (Input.GetButtonDown("Jump"))
+            ModyfyTheMaze();
+    }
+
 
 
 
@@ -71,6 +83,73 @@ public class Map : MonoBehaviour
 
         transformToRotate.Rotate(optymalizationVariable);
 
+    }
+
+
+    public void ModyfyTheMaze()
+    {
+        int value = Random.Range((int)-(size - 1), (int)size - 1); // 0 - 6 Tested
+        bool isLine = (Random.Range(0, 2) % 2 == 1);
+
+        int absValue = Mathf.Abs(value);
+        GameObject buffer;
+
+        Debug.Log(isLine);
+
+
+        if (isLine)
+        {
+
+            if (value >= 0)
+            {
+
+                buffer = additionalRoom;
+                additionalRoom = gridOfRooms[absValue, size - 1];
+
+                for (int i = (int)size - 2; i >= 0; i--)
+                {
+                        Debug.Log(i);
+
+                    if (i != 0)
+                    {
+                        Debug.Log(size - 1);
+                        gridOfRooms[absValue, size - 1] = gridOfRooms[absValue, size - 2];
+                    }
+                    else
+                    {
+                        Debug.Log(i);
+
+                        gridOfRooms[absValue, 0] = buffer;
+                    }
+
+                }
+
+            }
+            else
+            {
+
+                //buffer = gridOfRooms[absValue, size - 1];
+                //additionalRoom = gridOfRooms[absValue, 0];
+
+                //for (int i = (int)size - 2; i > 1; i--)
+                //{
+
+
+                //}
+
+            }
+
+
+        }
+        else
+        {
+
+
+
+        }
+
+
+        additionalRoom.transform.position = Camera.main.transform.position + new Vector3(0, 10, 0);
     }
 
 

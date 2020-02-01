@@ -381,19 +381,19 @@ PrefabInstance:
         type: 3}
       propertyPath: roomTypes.Array.data[0]
       value: 
-      objectReference: {fileID: 4118665633826017438, guid: 1f2107c55f2d46b4892ad15a626bd2b3,
+      objectReference: {fileID: 4118665633826017438, guid: adb2c7caa573d914c83072f4e6e38f70,
         type: 3}
     - target: {fileID: 4284487907570159212, guid: 8433878d6f5788c45bd4605e8a606cb0,
         type: 3}
       propertyPath: roomTypes.Array.data[1]
       value: 
-      objectReference: {fileID: 132785322527756747, guid: c807e9878342a224f86826d0107c582d,
+      objectReference: {fileID: 132785322527756747, guid: 91515007a72a24447ad7cb8b87f8a9e8,
         type: 3}
     - target: {fileID: 4284487907570159212, guid: 8433878d6f5788c45bd4605e8a606cb0,
         type: 3}
       propertyPath: roomTypes.Array.data[2]
       value: 
-      objectReference: {fileID: 274914304781861651, guid: 089f0c4648fd78f438d58a865a987bbd,
+      objectReference: {fileID: 274914304781861651, guid: dc6bd7ba7755da0488d3fefea04fc25b,
         type: 3}
     - target: {fileID: 5165597650007800632, guid: 8433878d6f5788c45bd4605e8a606cb0,
         type: 3}
