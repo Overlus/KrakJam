@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
@@ -12,11 +13,14 @@ public class PlayerContreller : MonoBehaviour
     private Vector3 newPlayerPosition;
     private bool isLerping;
     private Vector3 childrenPosition;
+    private LayerMask _layerMask = 8;
     private void Update()
     {
         PlayerInput();
         DrawLines();
         childrenPosition = transform.GetChild(0).position;
+       
+        Debug.Log(newPlayerPosition.x);
     }
 
     private void PlayerInput()
@@ -35,24 +39,27 @@ public class PlayerContreller : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.A))
         {
-            CheckIsPatchAvailable(Vector3.right);
+            CheckIsPatchAvailable(-Vector3.right);
         }
 
         if (Input.GetKeyDown(KeyCode.D))
         {
-            CheckIsPatchAvailable(-Vector3.right);
+            CheckIsPatchAvailable(Vector3.right);
         }
     }
     private void CheckIsPatchAvailable(Vector3 direction)
     {
-        RaycastHit hit;
-        if (!Physics.Raycast(childrenPosition, direction, out hit, 1)&&!isLerping)
+        childrenPosition.y =- 0.20f;
+
+        RaycastHit[] hits;
+        hits = Physics.RaycastAll(childrenPosition, direction,1);
+        if (hits.Length >= 5 && !isLerping)
         {
             newPlayerPosition = transform.position + direction;
-                StartCoroutine(MovePlayer(0.35f));
-            return;
+
+            StartCoroutine(MovePlayer(0.35f));
+                Debug.Log("Dupa");
         }
-        return;
     }
     private void DrawLines()
     {
@@ -78,6 +85,9 @@ public class PlayerContreller : MonoBehaviour
             yield return new WaitForEndOfFrame();
             timmer = timmer + Time.deltaTime;
         }
+        newPlayerPosition.x = (float)Math.Round(newPlayerPosition.x,1);
+        newPlayerPosition.z = (float)Math.Round(newPlayerPosition.z,1);
+        transform.position = newPlayerPosition;
         isLerping = false;
     }
 }
