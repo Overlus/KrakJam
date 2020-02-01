@@ -15,59 +15,115 @@ public class EnemyController : MonoBehaviour
     private Vector3 newPlayerPosition;
     private bool isLerping;
     private readonly LayerMask layermask = 8;
+    private bool[] availablePaths;
+
+    [SerializeField] private Transform player;
+    
     private void Update()
     {
         DrawLines();
         childrenPosition = transform.GetChild(0).position;
         if (OurGameManager.actualState == OurGameController.GameState.enemyMove)
         {
-            CheckIsPathAvailable(ChoseRandomDirection());
+            ChoseRandomDirection();
         }
     }
 
     
-    Vector3 ChoseRandomDirection()
+    void ChoseRandomDirection()
     {
-        var rnd = Random.Range(1, 5); 
-        switch (rnd)
-        {
-            case 1:
-                return Vector3.right;
-            case 2:
-                return -Vector3.right;
-            case 3:
-                return Vector3.forward;
-            case 4:
-                return -Vector3.forward;
-        }
-        return Vector3.zero;
+        CheckIsPathAvailable(Vector3.right,0);
+        CheckIsPathAvailable(-Vector3.right,1);
+        CheckIsPathAvailable(Vector3.forward,2);
+        CheckIsPathAvailable(-Vector3.forward,3);
     }
 
-    private void CheckIsPathAvailable(Vector3 direction)
+    private void CheckIsPathAvailable(Vector3 direction, int boolnr)
     {
-//        childrenPosition.y =- 0.20f;
-//        RaycastHit hit;
-//        if (!Physics.Raycast(childrenPosition, direction, out hit, 1,layermask)&&!isLerping&&
-//            OurGameManager.actualState == OurGameController.GameState.enemyMove)
-//        {
-//            newPlayerPosition = transform.position + direction;
-//            StartCoroutine(EnemyMove(0.35f));
-//            return;
-//        }
         childrenPosition.y =- 0.20f;
         RaycastHit[] hits;
         hits = Physics.RaycastAll(childrenPosition, direction,1);
         if (hits.Length >= 5 && !isLerping)
         {
+            availablePaths[boolnr] = true;
+        }
+
+        availablePaths[boolnr] = false;
+
+        ChoseAvailablePath();
+    }
+
+    private void ChoseAvailablePath()
+    {
+        float[] temp = new float[4];
+
+        for (int i = 0; i < 4; i++)
+        {
+            temp[i] = 9000;
+        }
+        
+        if (availablePaths[0])
+        {
+            Vector3 tempVect = transform.position + Vector3.right;
+            temp[0] = Vector3.Distance(tempVect, player.position);
+        }
+        if (availablePaths[1])
+        {
+            Vector3 tempVect = transform.position - Vector3.right;
+            temp[1] = Vector3.Distance(tempVect, player.position);
+        }
+        if (availablePaths[2])
+        {
+            Vector3 tempVect = transform.position + Vector3.forward;
+            temp[2] = Vector3.Distance(tempVect, player.position);
+        }
+        if (availablePaths[3])
+        {
+            Vector3 tempVect =  transform.position - Vector3.forward;
+            temp[3] = Vector3.Distance(tempVect, player.position);
+        }
+
+        float temporaryFloat = 8000;
+        int index = -1;
+
+        for (int i = 0; i < 4; i++)
+        {
+            if (temp[i] < temporaryFloat)
+            {
+                temporaryFloat = temp[i];
+                index = i;
+            }
+        }
+
+
+        if (index != -1 && temp[index] != 9000)
+        {
+            Vector3 direction;
+            switch (index)
+            {
+                case 0 :
+                    direction = Vector3.right;
+                    break;
+                case 1 :
+                    direction = -Vector3.right;
+                    break;
+                case 2 :
+                    direction = Vector3.forward;
+                    break;
+                case 3 :
+                    direction = -Vector3.forward;
+                    break;
+                default: direction = Vector3.zero;
+                    break;
+            }
             newPlayerPosition = transform.position + direction;
             StartCoroutine(EnemyMove(0.35f));
         }
-
-        return;
     }
 
     private IEnumerator EnemyMove(float lerpTime)
     {
+        
         Vector3 startingPosition = transform.position;
         isLerping = true;
         var timmer = 0f;
@@ -83,8 +139,7 @@ public class EnemyController : MonoBehaviour
         newPlayerPosition.z = (float)Math.Round(newPlayerPosition.z,1);
         transform.position = newPlayerPosition;
         isLerping = false;
-        OurGameManager.actualState = OurGameController.GameState.sceneMove;
-        OurGameController.enemyMadeMove = true;
+
     }
     
 #if UNITY_EDITOR
