@@ -1,56 +1,54 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Runtime.CompilerServices;
-using UnityEditor;
-using UnityEditor.VersionControl;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.SocialPlatforms;
 using Debug = UnityEngine.Debug;
 
-public class PlayerContreller : MonoBehaviour
+public class EnemyController : MonoBehaviour
 {
+    private Vector3 childrenPosition;
     private Vector3 newPlayerPosition;
     private bool isLerping;
-    private Vector3 childrenPosition;
-    private LayerMask layerMask = 8;
+    private bool enemyMoved;
+    private LayerMask layermask = 8;
     private void Update()
     {
-        PlayerInput();
         DrawLines();
         childrenPosition = transform.GetChild(0).position;
+        CheckIsPatchAvailable(ChoseRandomDirection());
     }
 
-    private void PlayerInput()
+    private void OnEnable()
     {
-        if (!Input.anyKeyDown)
-            return;
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            CheckIsPatchAvailable(Vector3.forward);
-        }
-
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            CheckIsPatchAvailable(-Vector3.forward);
-        }
-
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            CheckIsPatchAvailable(Vector3.right);
-        }
-
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            CheckIsPatchAvailable(-Vector3.right);
-        }
+        enemyMoved = false;
     }
+
+    Vector3 ChoseRandomDirection()
+    {
+        var rnd = Random.Range(1, 5);
+        switch (rnd)
+        {
+            case 1:
+                return Vector3.right;
+            case 2:
+                return -Vector3.right;
+            case 3:
+                return Vector3.forward;
+            case 4:
+                return -Vector3.forward;
+        }
+        return Vector3.zero;
+    }
+
     private void CheckIsPatchAvailable(Vector3 direction)
     {
         RaycastHit hit;
-        if (!Physics.Raycast(childrenPosition, direction, out hit, 1, layerMask)&&!isLerping)
+        if (!Physics.Raycast(childrenPosition, direction, out hit, 1,layermask)&&!isLerping)
         {
             newPlayerPosition = transform.position + direction;
-                StartCoroutine(MovePlayer(0.35f));
+            StartCoroutine(MovePlayer(0.35f));
             return;
         }
         return;
@@ -69,8 +67,11 @@ public class PlayerContreller : MonoBehaviour
             yield return new WaitForEndOfFrame();
             timmer = timmer + Time.deltaTime;
         }
+        enabled = false;
+        enemyMoved = true;
         isLerping = false;
     }
+    
 #if UNITY_EDITOR
     private void DrawLines()
     {
