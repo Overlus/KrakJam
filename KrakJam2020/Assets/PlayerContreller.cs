@@ -19,8 +19,6 @@ public class PlayerContreller : MonoBehaviour
         PlayerInput();
         DrawLines();
         childrenPosition = transform.GetChild(0).position;
-       
-        Debug.Log(newPlayerPosition.x);
     }
 
     private void PlayerInput()
@@ -58,7 +56,6 @@ public class PlayerContreller : MonoBehaviour
             newPlayerPosition = transform.position + direction;
 
             StartCoroutine(MovePlayer(0.35f));
-                Debug.Log("Dupa");
         }
     }
     private void DrawLines()
