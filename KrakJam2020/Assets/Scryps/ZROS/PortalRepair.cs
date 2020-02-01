@@ -16,25 +16,18 @@ public class PortalRepair : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            if (!areAllSlotsFilled)
-            {
+            if (!areAllSlotsFilled) {
                 AtemptToRepairSlots(GetRandomSlotNumber());
-            }
-            else
-            {
+            }else {
                 Debug.Log("It's time to stop");
             }
         }
     }
     
-    private void AtemptToRepairSlots(int slotNumber)
-    {
-        if (!IsSlotRepaired(slotNumber))
-        {
+    private void AtemptToRepairSlots(int slotNumber) {
+        if (!IsSlotRepaired(slotNumber)) {
             RepairSlots(slotNumber);
-        }
-        else
-        {
+        }else {
             AtemptToRepairSlots(GetRandomSlotNumber());
         }
     }
