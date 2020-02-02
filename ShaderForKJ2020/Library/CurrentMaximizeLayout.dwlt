@@ -23,10 +23,10 @@ MonoBehaviour:
     y: 30
     width: 1536
     height: 731
-  m_MinSize: {x: 911, y: 342}
-  m_MaxSize: {x: 22006, y: 10021}
+  m_MinSize: {x: 907, y: 321}
+  m_MaxSize: {x: 22002, y: 10000}
   vertical: 0
-  controlID: 3952
+  controlID: 6436
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -48,8 +48,8 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 436.80002
-    y: 73.6
+    x: 1
+    y: 19
     width: 821
     height: 412
   m_ViewDataDictionary: {fileID: 0}
@@ -85,7 +85,7 @@ MonoBehaviour:
     m_HSlider: 0
     m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
-    m_EnableMouseInput: 1
+    m_EnableMouseInput: 0
     m_EnableSliderZoomHorizontal: 0
     m_EnableSliderZoomVertical: 0
     m_UniformScale: 1
@@ -96,18 +96,18 @@ MonoBehaviour:
       y: 21
       width: 821
       height: 391
-    m_Scale: {x: 1, y: 1}
-    m_Translation: {x: 410.5, y: 195.5}
+    m_Scale: {x: 1.0609, y: 1.0609}
+    m_Translation: {x: 422.52777, y: 190.53662}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -410.5
-      y: -195.5
-      width: 821
-      height: 391
+      x: -398.27295
+      y: -179.59904
+      width: 773.8713
+      height: 368.55502
     m_MinimalGUI: 1
   m_defaultScale: 1
   m_LastWindowPixelSize: {x: 1026.25, y: 515}
@@ -135,8 +135,8 @@ MonoBehaviour:
     y: 0
     width: 235
     height: 731
-  m_MinSize: {x: 231, y: 271}
-  m_MaxSize: {x: 10001, y: 10021}
+  m_MinSize: {x: 230, y: 250}
+  m_MaxSize: {x: 10000, y: 10000}
   m_ActualView: {fileID: 4}
   m_Panes:
   - {fileID: 4}
@@ -181,20 +181,20 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Prefabs/ZROS
+    - Assets/Scryps/Twardy
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Prefabs/ZROS
+  - Assets/Scryps/Twardy
   m_LastFoldersGridSize: -1
-  m_LastProjectPath: "C:\\Users\\Miko\u0142aj Twardowski\\Desktop\\ShaderForKJ2020"
+  m_LastProjectPath: "C:\\Users\\Miko\u0142aj Twardowski\\Desktop\\KrakJam2020\\Repo\\KrakJam\\ShaderForKJ2020"
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 403e0000
-    m_LastClickedID: 15936
-    m_ExpandedIDs: 00000000ba3a0000f63d0000343e000000ca9a3b
+    m_SelectedIDs: 14400000
+    m_LastClickedID: 16404
+    m_ExpandedIDs: 00000000e03a0000c23f0000c43f0000c63f00001040000070420000ae42000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -222,7 +222,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000ba3a0000f63d000000ca9a3b
+    m_ExpandedIDs: 00000000e03a0000c23f0000c43f0000c63f00001040000070420000ae42000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -247,9 +247,9 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: d23b0000d43b0000d63b0000
-    m_LastClickedInstanceID: 15314
-    m_HadKeyboardFocusLastEvent: 1
+    m_SelectedInstanceIDs: 7ef5ffff5af5ffff78f5ffff62f5ffff60f5ffff5ef5ffff6cf5ffff76f5ffff6af5ffff72f5ffff56f5ffff5cf5ffff54f5ffff82f5ffff66f5ffff52f5ffff68f5ffff80f5ffff64f5ffff74f5ffff6ef5ffff70f5ffff4ef5ffff58f5ffff50f5ffff7cf5ffff7af5ffff
+    m_LastClickedInstanceID: -2690
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c623000034450000e837000000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -297,8 +297,8 @@ MonoBehaviour:
     y: 0
     width: 202
     height: 731
-  m_MinSize: {x: 202, y: 221}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 6}
   m_Panes:
   - {fileID: 6}
@@ -335,7 +335,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 8ee6feff9ce8feff14caffffd6caffff94d2ffff04fbffff2cfbffff2efbffff923b0000a83b0000
+      m_ExpandedIDs: baf5ffffc8f5ffffd0f5ffffb8f7ffffc8faffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -380,10 +380,10 @@ MonoBehaviour:
     y: 0
     width: 823
     height: 731
-  m_MinSize: {x: 202, y: 342}
-  m_MaxSize: {x: 4002, y: 8042}
+  m_MinSize: {x: 202, y: 321}
+  m_MaxSize: {x: 4002, y: 8021}
   vertical: 1
-  controlID: 3926
+  controlID: 6437
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -514,9 +514,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 2.0519352, y: 0.5357075, z: 2.151571}
+    m_Target: {x: 0, y: 0.582, z: 0}
     speed: 2
-    m_Value: {x: 2.0519352, y: 0.5357075, z: 2.151571}
+    m_Value: {x: 0, y: 0.582, z: 0}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -566,9 +566,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: -0.00313363, y: 0.9792643, z: -0.20198563, w: -0.015281812}
   m_Size:
-    m_Target: 0.72868276
+    m_Target: 0.4286826
     speed: 2
-    m_Value: 0.72868276
+    m_Value: 0.4286826
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -666,8 +666,8 @@ MonoBehaviour:
     y: 433
     width: 823
     height: 298
-  m_MinSize: {x: 102, y: 121}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 100, y: 100}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 14}
   m_Panes:
   - {fileID: 14}
@@ -718,8 +718,8 @@ MonoBehaviour:
     y: 0
     width: 276
     height: 731
-  m_MinSize: {x: 276, y: 71}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 16}
   m_Panes:
   - {fileID: 16}
@@ -761,5 +761,5 @@ MonoBehaviour:
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
   m_PreviewWindow: {fileID: 0}
-  m_LastInspectedObjectInstanceID: 15314
-  m_LastVerticalScrollValue: 0
+  m_LastInspectedObjectInstanceID: -2738
+  m_LastVerticalScrollValue: 100
