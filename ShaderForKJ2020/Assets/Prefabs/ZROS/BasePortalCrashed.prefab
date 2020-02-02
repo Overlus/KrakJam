@@ -319,6 +319,7 @@ MonoBehaviour:
   - {fileID: 312582897115436150}
   - {fileID: 5610103034433866555}
   - {fileID: 3727837334790925961}
+  portal: {fileID: 4744815557956277360, guid: fff6a0fab05e738499c5fc59a73e7ba0, type: 3}
 --- !u!54 &2409125303907495429
 Rigidbody:
   m_ObjectHideFlags: 0
