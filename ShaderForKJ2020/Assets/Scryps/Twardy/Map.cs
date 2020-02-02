@@ -24,10 +24,51 @@ public class Map : MonoBehaviour
     public CameraShake cameraShake;
 
     static public GameObject repparingItem;
+    [SerializeField] private GameObject enemy;
+    [SerializeField] private GameObject player;
+    List<GameObject> enemys = new List<GameObject>();
+    private GameObject playerOnMap;
+    private int RandomNr;
+    private void SpawnObject()
+    {
+       var enemyGameObject = Instantiate(enemy, new Vector3(RandomNr, 0f, RandomNr), Quaternion.identity);
+       enemys.Add(enemyGameObject);
+       playerOnMap =  Instantiate(player, new Vector3(-1,0,-1), Quaternion.identity);
+    }
 
+    private void Defeat()
+    {
+        foreach (var ennemy in enemys)
+        {
+            Debug.Log("Set enemy on lowel");
+            var tmp = ennemy.transform.position;
+            tmp.z =+ -10;
+            ennemy.transform.position = tmp;        
+        }
+
+        var transformPosition = playerOnMap.transform.position;
+        transformPosition.z = -10;
+        playerOnMap.transform.position = transformPosition;
+    }
+
+    private void Restart()
+    {
+        Debug.Log("RESTARDER " + OurGameController.restart);
+        foreach (var ennemy in enemys)
+        {
+            ennemy.transform.position = new Vector3(RandomNr, 0f,RandomNr);
+        }
+        playerOnMap.transform.position = new Vector3(-1f, 0f, -1f);
+        OurGameController.restart = true;
+        Time.timeScale = 1;
+    }
 
     private void Start()
     {
+        RandomNr = Random.Range(1, (int) size);
+
+
+        SpawnObject();
         size = _size_;
 
         repparingItem = repItem;
@@ -86,6 +127,18 @@ public class Map : MonoBehaviour
             MoveColumns(additionalRoom, Random.Range(0, (int)size));
             StartShake();
         }
+        else if (OurGameManager.actualState == OurGameController.GameState.end && OurGameController.restart)
+        {
+            Restart();
+        }
+        else if (OurGameManager.actualState == OurGameController.GameState.end && !OurGameController.restart)
+        {
+            Defeat();
+            if (Input.GetKeyDown(KeyCode.R))
+                OurGameController.restart = true;
+        }
+        
+        Debug.Log("Check, Check");
     }
 
     private void MoveScene()

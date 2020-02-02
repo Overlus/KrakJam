@@ -3,7 +3,16 @@ guid: ac04bfe0a3bbcf64594bf28a18408f32
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - brickReplace: {instanceID: 0}
+  - portal: {fileID: 4744815557956277362, guid: fff6a0fab05e738499c5fc59a73e7ba0,
+      type: 3}
+  - repItem: {fileID: 4399714922860730671, guid: 9be90271276754c47b282b64343b1723,
+      type: 3}
+  - cameraShake: {instanceID: 0}
+  - enemy: {fileID: 2827726769762015793, guid: 365fa417eab12604782ea19c2801afe8, type: 3}
+  - player: {fileID: 1639126205644448787, guid: 306cc0a8f313ac1408cde53f180309b8,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

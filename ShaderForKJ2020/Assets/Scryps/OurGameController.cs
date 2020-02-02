@@ -13,10 +13,12 @@ public static class OurGameController
         enemyMove,
         sceneMove,
         end,
+        won
     }
 
     public static bool playerMadeMove;
     public static bool enemyMadeMove;
     public static bool sceneMadeMove;
+    public static bool restart;
 }
 

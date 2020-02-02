@@ -12,6 +12,7 @@ public class DetectCollisionWithPlayer : MonoBehaviour
             OurGameManager.actualState = OurGameController.GameState.end;
             Debug.Log(OurGameManager.actualState );
             hit.Play();
+            OurGameController.restart = false;
         }
            
     }
@@ -22,6 +23,7 @@ public class DetectCollisionWithPlayer : MonoBehaviour
         {
             OurGameManager.actualState = OurGameController.GameState.end;
             Debug.Log(OurGameManager.actualState );
+            OurGameController.restart = false;
         }
            
     }
