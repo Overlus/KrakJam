@@ -11,6 +11,16 @@ KrakJam2020/[Ll]ogs/
 KrakJam2020/[Mm]emoryCaptures/
 KrakJam2020/.idea/
 
+ShaderForKJ2020/[Ll]ibrary/
+ShaderForKJ2020/[Tt]emp/
+ShaderForKJ2020/[Oo]bj/
+ShaderForKJ2020/[Bb]uild/
+ShaderForKJ2020/[Bb]uilds/
+ShaderForKJ2020/[Ll]ogs/
+ShaderForKJ2020/[Mm]emoryCaptures/
+ShaderForKJ2020/.idea/
+
+
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta
 

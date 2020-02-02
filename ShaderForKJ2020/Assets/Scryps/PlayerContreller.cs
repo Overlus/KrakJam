@@ -15,6 +15,7 @@ public class PlayerContreller : MonoBehaviour
     private bool isLerping;
     private Vector3 childrenPosition;
     private LayerMask _layerMask = 8;
+    public AudioSource steps;
     private void Update()
     {
         PlayerInput();
@@ -58,8 +59,11 @@ public class PlayerContreller : MonoBehaviour
         hits = Physics.RaycastAll(childrenPosition, direction,1);
         if (hits.Length >= 5 && !isLerping)
         {
+            steps.Play();
             newPlayerPosition = transform.position + direction;
+            
             StartCoroutine(MovePlayer(0.35f));
+            
         }
         else
         {
