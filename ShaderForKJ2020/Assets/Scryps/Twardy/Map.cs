@@ -5,6 +5,7 @@ using UnityEngine;
 public class Map : MonoBehaviour
 {
     [SerializeField] uint _size_;
+    public AudioSource brickReplace;
 
     static public uint size;
 
@@ -93,9 +94,10 @@ public class Map : MonoBehaviour
         {
             MoveRow(additionalRoom, Random.Range(0, (int) size )); //podać obiekt który będzie podmieniany.
             MoveColumns(additionalRoom, Random.Range(0, (int)size)); //podać obiekt który będzie podmieniany.
+            brickReplace.Play();
             OurGameController.sceneMadeMove = true;
             OurGameManager.actualState = OurGameController.GameState.playerMove;
-            
+            StartShake();
         }
     }
     void ApplayRoomRotation(Transform transformToRotate)
