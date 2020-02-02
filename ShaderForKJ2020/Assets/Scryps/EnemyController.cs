@@ -29,7 +29,7 @@ public class EnemyController : MonoBehaviour
 
     private void Update()
     {
-        DrawLines();
+//        DrawLines();
         if (OurGameManager.actualState == OurGameController.GameState.enemyMove && !isNewPositionFound)
         {
             isNewPositionFound = true;

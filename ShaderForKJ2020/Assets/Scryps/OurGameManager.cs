@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.XR.WSA.Input;
 
 public class OurGameManager : MonoBehaviour
 {
     public static OurGameController.GameState actualState = OurGameController.GameState.playerMove;
-
+    [SerializeField] private GameObject won;
+    [SerializeField] private GameObject los;
 
     private void Start()
     {
@@ -25,6 +25,8 @@ public class OurGameManager : MonoBehaviour
                 case OurGameController.GameState.playerMove:
                     if (OurGameController.playerMadeMove)
                     {
+                        los.SetActive(false);
+                        won.SetActive(false);
                         OurGameController.playerMadeMove = false;
                         actualState = OurGameController.GameState.enemyMove;
                     }
@@ -47,20 +49,33 @@ public class OurGameManager : MonoBehaviour
                     case OurGameController.GameState.end:
                         if (OurGameController.restart)
                         {
-                            Debug.Log("Last Stand");
                             Time.timeScale = 1;
+                            los.SetActive(false);
                             actualState = OurGameController.GameState.playerMove;
                         }
                         else
+                        {
+                        los.SetActive(true);
                         StopGame();
-                        Debug.Log("Game STOPPED");
+                        OurGameController.playerMadeMove = false;
+                        }
 
                        
                     break;
                    case OurGameController.GameState.won:
-                    if (OurGameController.restart == false)
+                    if (OurGameController.restart)
+                    {
+                        Time.timeScale = 1;
+                        won.SetActive(false);
+                        actualState = OurGameController.GameState.playerMove;
+                    }
+                    else
+                    {
+                        won.SetActive(true);
                         StopGame();
-                       
+                        OurGameController.playerMadeMove = false;
+                    }
+
                  
                        break;
             }
@@ -71,7 +86,7 @@ public class OurGameManager : MonoBehaviour
     private void StopGame()
     {
         Debug.Log("CheckXXSXS");
-        Time.timeScale = 0;
+        Time.timeScale = 0f;
     }
 
     private void ResetGame()

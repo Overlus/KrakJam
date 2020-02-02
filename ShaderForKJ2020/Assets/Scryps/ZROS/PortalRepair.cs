@@ -7,11 +7,15 @@ using Random = UnityEngine.Random;
 public class PortalRepair : MonoBehaviour
 {
     [SerializeField] private GameObject[] emptyParts;
-    private bool[] repairSlotsStatus= new bool[6];
+    [SerializeField] private int portalSlots = 1;
+    private bool[] repairSlotsStatus;
     private bool areAllSlotsFilled;
     public AudioSource portal;
-    
-    
+
+    private void Start()
+    {
+        repairSlotsStatus = new bool[portalSlots];
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -25,6 +29,7 @@ public class PortalRepair : MonoBehaviour
             {
                 portal.Play();
                 Debug.Log("It's time to stop");
+                OurGameManager.actualState = OurGameController.GameState.won;
             }
         }
     }
@@ -34,6 +39,7 @@ public class PortalRepair : MonoBehaviour
         if (!IsSlotRepaired(slotNumber))
         {
             RepairSlots(slotNumber);
+            ScoreManager.Instance.Scores++;
         }
         else
         {
@@ -43,7 +49,7 @@ public class PortalRepair : MonoBehaviour
 
     private int GetRandomSlotNumber()
     {
-        return Random.Range(0, 6);
+        return Random.Range(0, portalSlots);
     }
 
     private void RepairSlots(int slotNumber)

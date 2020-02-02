@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using UnityEditor;
-using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.Events;
 using Debug = UnityEngine.Debug;
@@ -19,7 +18,7 @@ public class PlayerContreller : MonoBehaviour
     private void Update()
     {
         PlayerInput();
-        DrawLines();
+//        DrawLines();
         childrenPosition = transform.GetChild(0).position;
     }
 
