@@ -34,6 +34,8 @@ public class OurGameManager : MonoBehaviour
                 case OurGameController.GameState.enemyMove:
                     if (OurGameController.enemyMadeMove)
                     {
+                        los.SetActive(false);
+                        won.SetActive(false);
                         OurGameController.enemyMadeMove = false;
                         actualState = OurGameController.GameState.sceneMove;
                     }
@@ -55,9 +57,12 @@ public class OurGameManager : MonoBehaviour
                         }
                         else
                         {
+                            Debug.Log("Player Had collision");
                         los.SetActive(true);
                         StopGame();
                         OurGameController.playerMadeMove = false;
+                        OurGameController.restart = false;
+
                         }
 
                        
@@ -68,6 +73,8 @@ public class OurGameManager : MonoBehaviour
                         Time.timeScale = 1;
                         won.SetActive(false);
                         actualState = OurGameController.GameState.playerMove;
+                        OurGameController.restart = false;
+                        ScoreManager.Instance.Scores = 0;
                     }
                     else
                     {

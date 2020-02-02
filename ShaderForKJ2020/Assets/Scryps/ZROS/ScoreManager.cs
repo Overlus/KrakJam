@@ -12,7 +12,9 @@ public class ScoreManager : MonoBehaviour
 
     private void Update()
     {
-        scoreText.text = Scores + "/6";
+        scoreText.text = Scores + "/2";
+        if (Scores == 2)
+            OurGameManager.actualState = OurGameController.GameState.won;
     }
 
     public void Awake()

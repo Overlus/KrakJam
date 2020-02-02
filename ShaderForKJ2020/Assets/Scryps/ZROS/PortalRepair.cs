@@ -29,7 +29,6 @@ public class PortalRepair : MonoBehaviour
             {
                 portal.Play();
                 Debug.Log("It's time to stop");
-                OurGameManager.actualState = OurGameController.GameState.won;
             }
         }
     }
