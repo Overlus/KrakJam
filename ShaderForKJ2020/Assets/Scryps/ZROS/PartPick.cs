@@ -7,15 +7,20 @@ using UnityEngine.UI;
 public class PartPick : MonoBehaviour
 {
     public Text scoreText;
-    private int partCount = 0;
+    public int partCount = 0;
+
+    private void Update()
+    {
+        
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             transform.parent = other.transform;
             gameObject.transform.localPosition = new Vector3(0, 1.3f, 0);
-            partCount++;
-            scoreText.text += partCount + "/6";
+            partCount = ScoreManager.Instance.Scores++;
         }else if (other.CompareTag("Portal"))
         {
 
