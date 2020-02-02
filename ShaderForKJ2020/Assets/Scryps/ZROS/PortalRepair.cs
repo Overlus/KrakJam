@@ -9,6 +9,7 @@ public class PortalRepair : MonoBehaviour
     [SerializeField] private GameObject[] emptyParts;
     private bool[] repairSlotsStatus= new bool[6];
     private bool areAllSlotsFilled;
+    public AudioSource portal;
     
     
 
@@ -22,6 +23,7 @@ public class PortalRepair : MonoBehaviour
             }
             else
             {
+                portal.Play();
                 Debug.Log("It's time to stop");
             }
         }
